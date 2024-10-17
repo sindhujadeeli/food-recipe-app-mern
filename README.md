@@ -1,1 +1,1 @@
-# food-recipe-app-mern
+# food-recipe-app
