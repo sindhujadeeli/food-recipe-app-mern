@@ -1,4 +1,142 @@
 @import "~toastr/build/toastr.css";
+/* RecipeStyles.css */
+/* RecipeStyles.css */
+
+/* Overlay for modal background */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    z-index: 9999; /* Ensure it sits above everything else */
+  }
+  
+  /* Modal content styling */
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 100%;
+    z-index: 10000;
+  }
+  
+  /* Remove page scroll when modal is open */
+  .no-scroll {
+    overflow: hidden;
+  }
+  
+.recipe-crud-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.add-recipe-button {
+  display: block;
+  margin: 0 auto 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-recipe-button:hover {
+  background-color: #45a049;
+}
+
+.modal {
+  position: relative;
+}
+
+.modal h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.modal input,
+.modal textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.modal input[type="file"] {
+  margin-bottom: 20px;
+}
+
+.modal button {
+  width: 48%;
+  padding: 10px;
+  margin: 0 1%;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.modal button:hover {
+  background-color: #0056b3;
+}
+
+.recipe-item {
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.recipe-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+}
 
 .recipe-crud-container {
     max-width: 800px;

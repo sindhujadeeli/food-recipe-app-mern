@@ -14,11 +14,9 @@ const generateToken = (user) => {
 // Register User
 exports.registerUser = async (req, res) => {
   const { username, email, password } = req.body;
-console.log(req.body);
 
   try {
     const existingUser = await User.findOne({ email });
-    console.log(existingUser);
     
     if (existingUser) {
       return res.status(409).json({ message: 'Email already exists' });
@@ -62,7 +60,6 @@ exports.protectedRoute = (req, res) => {
 };
 
 exports.checkRole = async (req, res) => {
-  console.log(req.user.email);
   const isAdmin = await User.find({ role: 'admin', email:req.user.email});
   if (isAdmin) {
     return res.status(200).send({isAdmin:true});
@@ -80,7 +77,6 @@ exports.getAllAdmins = async (req, res) => {
 exports.createAdmin = async (req, res) => {
   const { email } = req.body; // Get the email from the request parameters
   try {
-    console.log(email);
     
     // Find the user by email and update their role to 'admin'
     const user = await User.findOneAndUpdate(

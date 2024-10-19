@@ -1,53 +1,140 @@
-/* AdminManagement.css */
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
-    margin: 0;
+/* Container for the admin management page */
+.admin-management-container {
+    width: 60%;
+    margin: 0 auto;
     padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
   }
   
   h2 {
+    text-align: center;
     color: #333;
+    margin-bottom: 20px;
+    font-size: 28px;
+    border-bottom: 2px solid #3498db;
+    display: inline-block;
+    padding-bottom: 5px;
   }
   
+  .add-admin-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-admin-button:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Admin list styling */
   .admin-list {
     list-style-type: none;
     padding: 0;
-    margin-top: 20px;
   }
   
   .admin-item {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    background-color: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   }
   
-  .add-admin-button, .delete-admin-button {
-    background-color: #007bff;
+  .admin-item div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .admin-username {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .admin-email {
+    font-size: 14px;
+    color: #777;
+    margin-top: 4px;
+  }
+  
+  /* Delete button styling */
+  .delete-admin-button {
+    padding: 8px 15px;
+    background-color: #e74c3c;
     color: white;
     border: none;
-    border-radius: 4px;
-    padding: 5px 10px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
   }
   
-  .add-admin-button:hover, .delete-admin-button:hover {
-    background-color: #0056b3;
+  .delete-admin-button:hover {
+    background-color: #c0392b;
   }
   
+  /* Modal styling */
   .modal {
+    background-color: white;
+    border-radius: 10px;
     padding: 20px;
+    max-width: 500px;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
   }
   
-  .error {
-    color: red;
-    font-size: 12px;
+  .modal h2 {
+    margin-bottom: 20px;
   }
+  
+  .modal form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modal input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .modal button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .modal button:hover {
+    background-color: #2980b9;
+  }
+  
+  .modal button[type="button"] {
+    background-color: #e74c3c;
+    margin-top: 10px;
+  }
+  
+  .modal button[type="button"]:hover {
+    background-color: #c0392b;
+  }
+  
   

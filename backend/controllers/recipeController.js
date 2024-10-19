@@ -4,7 +4,6 @@ const Recipe = require('../models/Recipe');
 exports.createRecipe = async (req, res) => {
     try {
         const { title, description, ingredients, instructions } = req.body;
-      console.log(req.body);
       
         // Check if the image is present in the request
         if (!req.files || !req.files.image) {

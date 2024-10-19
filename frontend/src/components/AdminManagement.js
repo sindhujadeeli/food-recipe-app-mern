@@ -110,13 +110,17 @@ const AdminManagement = () => {
       <button onClick={() => setIsAddModalOpen(true)} className="add-admin-button">Add New Admin</button>
       
       <ul className="admin-list">
-        {admins.map((admin) => (
-          <li key={admin.email} className="admin-item">
-            {admin.username}
-            <button onClick={() => openDeleteConfirmation(admin.email)} className="delete-admin-button">Delete</button>
-          </li>
-        ))}
-      </ul>
+      {admins.map((admin) => (
+        <li key={admin.email} className="admin-item">
+          <div>
+            <span className="admin-username">{admin.username}</span>
+            <span className="admin-email">{admin.email}</span>
+          </div>
+          <button onClick={() => openDeleteConfirmation(admin.email)} className="delete-admin-button">Delete</button>
+        </li>
+      ))}
+    </ul>
+
 
       {/* Add Admin Modal */}
       <Modal isOpen={isAddModalOpen} onRequestClose={closeAddModal} className="modal">
