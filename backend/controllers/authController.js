@@ -4,7 +4,11 @@ const bcrypt = require('bcryptjs');
 
 // Generate JWT Token
 const generateToken = (user) => {
-  return jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  return jwt.sign({ id: user._id,
+      email: user.email, 
+      username: user.username, 
+      // role: user.role
+   }, process.env.JWT_SECRET, { expiresIn: '1h' });
 };
 
 // Register User
@@ -17,7 +21,7 @@ console.log(req.body);
     console.log(existingUser);
     
     if (existingUser) {
-      return res.status(400).json({ message: 'User already exists' });
+      return res.status(409).json({ message: 'Email already exists' });
     }
 
     const user = new User({ username, email, password });
@@ -55,4 +59,61 @@ exports.loginUser = async (req, res) => {
 // Protected route example
 exports.protectedRoute = (req, res) => {
   res.status(200).json({ message: 'Welcome to the protected route!' });
+};
+
+exports.checkRole = async (req, res) => {
+  console.log(req.user.email);
+  const isAdmin = await User.find({ role: 'admin', email:req.user.email});
+  if (isAdmin) {
+    return res.status(200).send({isAdmin:true});
+  }
+  else{
+    return res.status(200).send({isAdmin:false});
+  }
+};
+
+exports.getAllAdmins = async (req, res) => {
+  const admins = await User.find({ role: 'admin' });
+  res.status(200).send(admins);
+};
+
+exports.createAdmin = async (req, res) => {
+  const { email } = req.body; // Get the email from the request parameters
+  try {
+    console.log(email);
+    
+    // Find the user by email and update their role to 'admin'
+    const user = await User.findOneAndUpdate(
+      { email },
+      { role: 'admin' },
+      { new: true } // Return the updated document
+    );
+
+    if (!user) return res.status(404).send('User not found.');
+
+    res.status(200).send(user); // Return the updated user
+  } catch (error) {
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+exports.deleteAdmin = async (req, res) => {
+  const email = req.params.id; // Get the email from the request parameters
+  try {
+    if(email == req.user.email){
+      return res.status(400).send('You cannot delete yourself.');
+    }
+    // Find the user by email and update their role to 'user'
+    const user = await User.findOneAndUpdate(
+      { email },
+      { role: 'user' },
+      { new: true } // Return the updated document
+    );
+
+    if (!user) return res.status(404).send('User not found.');
+
+    res.status(200).send(user); // Return the updated user
+  } catch (error) {
+    res.status(500).send('Internal Server Error');
+  }
 };

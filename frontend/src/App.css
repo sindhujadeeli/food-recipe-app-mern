@@ -1,3 +1,6 @@
+/* Add this to your App.css or index.css */
+@import "~toastr/build/toastr.css";
+
 .App {
   text-align: center;
 }
@@ -131,4 +134,8 @@ body {
 
 .auth-box a:hover {
   text-decoration: underline;
+}
+
+#username {
+color: white;
 }

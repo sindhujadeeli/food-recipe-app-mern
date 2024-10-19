@@ -1,0 +1,53 @@
+/* AdminManagement.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  .admin-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .admin-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .add-admin-button, .delete-admin-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .add-admin-button:hover, .delete-admin-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .modal {
+    padding: 20px;
+  }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+  }
+  
