@@ -36,3 +36,99 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #333;
+  padding: 1rem;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar ul li {
+  margin-right: 20px;
+}
+
+.navbar ul li a, .navbar ul li button {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: #444;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar ul li a:hover, .navbar ul li button:hover {
+  background-color: #555;
+}
+
+.home {
+  padding: 2rem;
+  text-align: center;
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.auth-box {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.auth-box h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.auth-box form input {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.auth-box form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.auth-box form button:hover {
+  background-color: #218838;
+}
+
+.auth-box p {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.auth-box a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.auth-box a:hover {
+  text-decoration: underline;
+}

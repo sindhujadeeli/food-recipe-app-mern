@@ -1,44 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Typography, Container, Box, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../App.css';
 
-const ProtectedAPI = () => {
+const Protected = () => {
   const [message, setMessage] = useState('');
-  const [error, setError] = useState('');
-
-  const fetchProtectedData = async () => {
-    try {
-      // Retrieve the token from localStorage
-      const token = localStorage.getItem('token');
-
-      if (!token) {
-        setError('No token found, please log in first');
-        return;
-      }
-
-      // Make request to protected API
-      const response = await axios.get('http://localhost:5000/api/auth/protected', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      setMessage(response.data.message);
-    } catch (err) {
-      setError('Access denied or token expired');
-      console.error(err);
-    }
-  };
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchProtectedData();
-  }, []);
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:5000/api/auth/protected', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        setMessage(response.data.message);
+      } catch (error) {
+        console.error(error);
+        navigate('/');
+      }
+    };
+    fetchData();
+  }, [navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/');
+  };
 
   return (
-    <div>
-      <h2>Protected API</h2>
-      {error ? <p style={{ color: 'red' }}>{error}</p> : <p>{message}</p>}
-    </div>
+    <Container maxWidth="sm">
+      <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Typography variant="h4">Protected Page</Typography>
+        <Typography variant="body1" sx={{ mt: 2 }}>{message}</Typography>
+        <Button
+          variant="contained"
+          sx={{ mt: 4 }}
+          onClick={handleLogout}
+        >
+          Logout
+        </Button>
+      </Box>
+    </Container>
   );
 };
 
-export default ProtectedAPI;
+export default Protected;

@@ -1,38 +1,10 @@
-// import React, { useState } from 'react';
-// import Register from './components/Register';
-// import Login from './components/Login';
-
-// function App() {
-//   const [token, setToken] = useState(localStorage.getItem('token'));
-
-//   const logout = () => {
-//     localStorage.removeItem('token');
-//     setToken(null);
-//   };
-
-//   return (
-//     <div className="App">
-//       <h1>JWT Auth Example</h1>
-//       {token ? (
-//         <div>
-//           <h2>Logged in successfully!</h2>
-//           <button onClick={logout}>Logout</button>
-//         </div>
-//       ) : (
-//         <div>
-//           <Register />
-//           <Login setToken={setToken} />
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default App;
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Home from './components/Home';
 import Register from './components/Register';
 import Login from './components/Login';
 import ProtectedAPI from './components/ProtectedAPI';
+import Navbar from './components/Navbar';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -43,23 +15,28 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>JWT Auth Example</h1>
-      {token ? (
-        <div>
-          <h2>Logged in successfully!</h2>
-          <button onClick={logout}>Logout</button>
-          <ProtectedAPI /> {/* This will test the protected API */}
-        </div>
-      ) : (
-        <div>
-          <Register />
-          <Login setToken={setToken} />
-        </div>
-      )}
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar token={token} logout={logout} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/login"
+            element={
+              token ? <Navigate to="/protected" /> : <Login setToken={setToken} />
+            }
+          />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/protected"
+            element={
+              token ? <ProtectedAPI /> : <Navigate to="/login" />
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
 export default App;
-
