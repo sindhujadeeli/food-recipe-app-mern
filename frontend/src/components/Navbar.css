@@ -1,0 +1,108 @@
+/* Navbar container */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3498db;
+    padding: 10px 20px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Navbar left side (links) */
+  .navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navbar ul li {
+    display: inline;
+  }
+  
+  .navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar ul li a:hover {
+    color: #f0f0f0;
+  }
+  
+  /* Profile section (right side) */
+  .profile-section {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .profile-icon {
+    background-color: white;
+    color: #3498db;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .profile-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    border-radius: 8px;
+    margin-top: 10px;
+    padding: 10px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    z-index: 10;
+  }
+  
+  .profile-dropdown a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    transition: background-color 0.3s ease;
+  }
+  
+  .profile-dropdown a:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .profile-section:hover .profile-dropdown {
+    display: block;
+  }
+  
+  /* Logout button */
+  .navbar button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar button:hover {
+    background-color: #c0392b;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .navbar ul {
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .profile-section {
+      margin-top: 20px;
+    }
+  }
+  

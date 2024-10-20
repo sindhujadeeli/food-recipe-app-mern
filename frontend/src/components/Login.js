@@ -68,6 +68,7 @@ const Login = ({ setToken }) => {
           <button type="submit" disabled={loading}>{loading ? 'Logging in...' : 'Login'}</button>
         </form>
         <p>Don't have an account? <a href="/register">Sign Up</a></p>
+        <p>Forgot your password? <a href="/reset-password">Reset Password</a></p>
       </div>
     </div>
   );

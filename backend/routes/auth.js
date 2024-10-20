@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerUser, loginUser, protectedRoute, checkRole, getAllAdmins,createAdmin, deleteAdmin } = require('../controllers/authController');
+const { resetPassword,registerUser,sendVerificationCode,userProfile,changePassword, editProfile,loginUser, protectedRoute, checkRole, getAllAdmins,createAdmin, deleteAdmin } = require('../controllers/authController');
 const { protect } = require('../middleware/authMiddleware');
 
 const router = express.Router();
@@ -30,4 +30,11 @@ router.delete('/recipe/:id',protect, deleteRecipe);
 router.get('/admins', protect, getAllAdmins);
 router.post('/admin', protect, createAdmin);
 router.delete('/admin/:id', protect, deleteAdmin);
+router.get('/profile', protect, userProfile);
+router.put('/profile', protect, editProfile);
+router.put('/change-password', protect, changePassword);
+router.put('/reset-password', protect, resetPassword);
+router.post('/send-code', sendVerificationCode);
+router.post('/verify-code', resetPassword);
+
 module.exports = router;
