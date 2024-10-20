@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import toastr from 'toastr';
 import './EditProfile.css'; // Import your CSS
+import { useNavigate } from 'react-router-dom';
 
 const EditProfile = ({ updateUsername }) => {
   const [user, setUser] = useState({ username: '', email: '' });
   const [isLoading, setIsLoading] = useState(true);
   const [newUsername, setNewUsername] = useState('');
-  
+  const navigate = useNavigate();
+
   const fetchUserProfile = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -48,6 +50,7 @@ const EditProfile = ({ updateUsername }) => {
       if (response.status === 200) {        
         updateUsername(response.data.username);
         toastr.success('Profile updated successfully!');
+        navigate('/');
       } else {
         toastr.error('Failed to update profile.');
       }

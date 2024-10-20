@@ -28,7 +28,7 @@ exports.registerUser = async (req, res) => {
     const token = generateToken(user);
     res.status(201).json({ token });
   } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: error });
   }
 };
 
@@ -61,7 +61,7 @@ exports.protectedRoute = (req, res) => {
 
 exports.checkRole = async (req, res) => {
   const isAdmin = await User.find({ role: 'admin', email:req.user.email});
-  if (isAdmin) {
+  if (isAdmin.length > 0) {
     return res.status(200).send({isAdmin:true});
   }
   else{

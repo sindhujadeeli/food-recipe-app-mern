@@ -3,6 +3,7 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import './RecipeCRUD.css';
 import toastr from 'toastr'; // Import Toastr
+import { FaHeart } from "react-icons/fa6";
 
 // Set up modal accessibility
 Modal.setAppElement('#root');
@@ -296,6 +297,10 @@ const RecipeCRUD = () => {
               <p>{recipe.description}</p>
               <p><strong>Ingredients:</strong> {recipe.ingredients.join(', ')}</p>
               <p><strong>Instructions:</strong> {recipe.instructions}</p>
+              {/* <FaHeart onClick={() => favRecipe(item)}
+                                            style={{ color: (favItems.some(res => res._id === item._id)) ? "red" : "" }} /> */}
+                                            <FaHeart 
+                                             />
               {isAdmin && (
                 <div className="recipe-actions">
                   <button onClick={() => openEditModal(recipe)}>Edit</button>

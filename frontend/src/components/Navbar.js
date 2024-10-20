@@ -41,6 +41,9 @@ const Navbar = ({ token, logout, username }) => {
             )}
           </>
         )}
+        <li>
+          <Link to="/favourites">Favourites</Link>
+        </li>
       </ul>
 
       {token ? (

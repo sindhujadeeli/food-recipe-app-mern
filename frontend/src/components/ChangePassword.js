@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './ChangePassword.css'; // Import CSS
-
+import toastr from 'toastr';
 const ResetPassword = () => {
   const navigate = useNavigate();
   const [currentPassword, setCurrentPassword] = useState('');
@@ -45,7 +45,8 @@ const ResetPassword = () => {
 
       if (response.data.success) {
         setSuccess('Password has been updated successfully');
-        navigate('/profile'); // Redirect to profile page or wherever needed
+        toastr.success('Password has been updated successfully');
+        navigate('/'); // Redirect to profile page or wherever needed
       } else {
         setError(response.data.message);
       }
@@ -56,7 +57,7 @@ const ResetPassword = () => {
 
   return (
     <div className="reset-password-container">
-      <h2>Reset Password</h2>
+      <h2>Change Password</h2>
       {error && <p className="error">{error}</p>}
       {success && <p className="success">{success}</p>}
       
@@ -91,7 +92,7 @@ const ResetPassword = () => {
           />
         </div>
 
-        <button type="submit" className="submit-btn">Reset Password</button>
+        <button type="submit" className="submit-btn">Change Password</button>
       </form>
 
       <p className="password-instructions">
