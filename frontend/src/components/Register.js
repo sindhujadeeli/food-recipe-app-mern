@@ -9,6 +9,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [username, setUsername] = useState('');
+  const [dob, setDob] = useState(''); // State for date of birth
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
@@ -17,10 +18,11 @@ const Register = () => {
     setErrorMessage(''); // Reset error message
 
     // Basic validations
-    if (!username || !email || !password || !confirmPassword) {
+    if (!username || !email || !password || !confirmPassword || !dob) {
       setErrorMessage('All fields are required.');
       return;
     }
+
 
     // Email regex for validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -29,6 +31,15 @@ const Register = () => {
       return;
     }
 
+    //check if dob is > 18 or not
+    const currentDate = new Date();
+    const dobDate = new Date(dob);
+    const age = currentDate.getFullYear() - dobDate.getFullYear();
+    if (age < 18) {
+      toastr.error('You must be at least 18 years old to register.');
+      setErrorMessage('You must be at least 18 years old to register.');
+      return;
+    }
     // Password validation (at least 8 characters, including upper/lowercase letters, numbers, and special characters)
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // Updated regex
     if (!passwordRegex.test(password)) {
@@ -43,7 +54,7 @@ const Register = () => {
     }
 
     try {
-      await axios.post('http://localhost:5000/api/auth/register', { email, password, username });
+      await axios.post('http://localhost:5000/api/auth/register', { email, password, username, dob }); // Include dob in the request
       toastr.success('Registration successful!'); 
       navigate('/login');
       
@@ -80,6 +91,13 @@ const Register = () => {
             required
           />
           <input
+            type="date" // Input type for date of birth
+            placeholder="Date of Birth"
+            value={dob}
+            onChange={(e) => setDob(e.target.value)}
+            required
+          />
+          <input
             type="password"
             placeholder="Password"
             value={password}
@@ -93,6 +111,7 @@ const Register = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
+
           <button type="submit">Sign Up</button>
         </form>
         <p>Already have an account? <a href="/login">Log In</a></p>

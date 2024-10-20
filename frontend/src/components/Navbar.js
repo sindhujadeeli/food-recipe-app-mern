@@ -40,7 +40,7 @@ const Navbar = ({ token, logout, username }) => {
               </li>
             )}
             <li>
-          <Link to="/favorites">My Favourites</Link>
+          <Link to="/favorites"> Favourites</Link>
         </li>
           </>
         )}

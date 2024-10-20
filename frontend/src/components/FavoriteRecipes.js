@@ -11,7 +11,7 @@ const RecipeList = ({ isAdmin }) => {
   const fetchRecipes = async () => {
     try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/auth/recipe/favorites', {
+        const response = await axios.get('http://localhost:5000/api/recipe/favorites', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -33,7 +33,7 @@ const RecipeList = ({ isAdmin }) => {
     const token = localStorage.getItem('token');
     try {
       await axios.put(
-        `http://localhost:5000/api/auth/recipe/${id}/toggle-favorite`,
+        `http://localhost:5000/api/recipe/${id}/toggle-favorite`,
         { isFavorite },
         {
           headers: {

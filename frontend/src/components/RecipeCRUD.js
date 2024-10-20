@@ -45,7 +45,7 @@ const RecipeCRUD = () => {
 
   const fetchRecipes = async () => {
     const token = localStorage.getItem('token');
-    const response = await axios.get('http://localhost:5000/api/auth/recipe', {
+    const response = await axios.get('http://localhost:5000/api/recipe', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -109,7 +109,7 @@ const RecipeCRUD = () => {
     formData.append('instructions', newRecipe.instructions);    
     formData.append('image', newRecipe.image);
 
-    await axios.post('http://localhost:5000/api/auth/recipe', formData, {
+    await axios.post('http://localhost:5000/api/recipe', formData, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',
@@ -138,7 +138,7 @@ const RecipeCRUD = () => {
     const token = localStorage.getItem('token');
     try {
       await axios.put(
-        `http://localhost:5000/api/auth/recipe/${id}/toggle-favorite`,
+        `http://localhost:5000/api/recipe/${id}/toggle-favorite`,
         { isFavorite },
         {
           headers: {
@@ -175,7 +175,7 @@ const RecipeCRUD = () => {
       formData.append('image', newRecipe.image);
     }
     
-    await axios.put(`http://localhost:5000/api/auth/recipe/${editingRecipeId}`, formData, {
+    await axios.put(`http://localhost:5000/api/recipe/${editingRecipeId}`, formData, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',
@@ -188,7 +188,7 @@ const RecipeCRUD = () => {
 
   const deleteRecipe = async () => {
     const token = localStorage.getItem('token');
-    await axios.delete(`http://localhost:5000/api/auth/recipe/${deletingRecipeId}`, {
+    await axios.delete(`http://localhost:5000/api/recipe/${deletingRecipeId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

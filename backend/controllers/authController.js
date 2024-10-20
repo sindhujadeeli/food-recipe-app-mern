@@ -13,7 +13,7 @@ const generateToken = (user) => {
 
 // Register User
 exports.registerUser = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, dob } = req.body;
 
   try {
     const existingUser = await User.findOne({ email });
@@ -26,7 +26,7 @@ exports.registerUser = async (req, res) => {
       return res.status(409).json({ message: 'Email already exists' });
     }
 
-    const user = new User({ username, email, password });
+    const user = new User({ username, email, password, dob });
     await user.save();
     
     const token = generateToken(user);
@@ -90,7 +90,7 @@ exports.createAdmin = async (req, res) => {
     );
 
     if (!user) return res.status(404).send('User not found.');
-    
+
 
     res.status(200).send(user); // Return the updated user
   } catch (error) {
@@ -177,49 +177,21 @@ exports.resetPasswords= async (req, res) => {
   }
 };
 
-const nodemailer = require('nodemailer'); // For sending emails
-require('dotenv').config();
-
-
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL, // Move to environment variable
-    pass: process.env.PASSWORD // Move to environment variable
-  }
-});
-
-// Function to send verification code
-exports.sendVerificationCode = async (req, res) => {
-  const { email } = req.body;  
-  const code = Math.floor(100000 + Math.random() * 900000).toString(); 
-
-  try {
-    await transporter.sendMail({
-      from: 'vishnudeeli515@gmail.com',
-      to: email.toString(),
-      subject: 'Food App Password Reset Verification Code',
-      text: `Your verification code for Food Recipe App is: ${code}`,
-    });
-    res.status(200).json({ success: true, code: code});
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: 'Failed to send email' });
-  }
-};
-
 // Function to verify code and reset password
 exports.resetPassword = async (req, res) => {
-  const { email, newPassword } = req.body;
-  const user = await User.findOne({ email });
+  try{
+    const { email, newPassword, dob } = req.body;
+  const user = await User.findOne({ email, dob });
   if (!user) {
-    return res.status(400).json({ success: false, message: 'User not found' });
+    return res.status(400).json({ success: false, message: 'Invalid email or Date of birth' });
   }
   user.password = newPassword; 
   await user.save();
 
   res.json({ success: true });
+  }
+  catch(err){
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
 };
-

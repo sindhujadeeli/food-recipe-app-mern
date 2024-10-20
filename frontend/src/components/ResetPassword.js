@@ -6,34 +6,13 @@ import toastr from 'toastr';
 const ResetPassword = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
-  const [code, setCode] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [step, setStep] = useState(1);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const [genCode, setGenCode] = useState('');
-  const handleSendCode = async (e) => {
-    e.preventDefault();
-    setError('');
-    setSuccess('');
+  const [dob, setDob] = useState('');
 
-    try {
-      const response = await axios.post('http://localhost:5000/api/auth/send-code', { email });
-      if (response.data.success) {
-        setStep(2); // Move to verification step
-        setSuccess('Verification code sent to your email.');
-        setGenCode(response.data.code); // Store the generated code for later verification
-        toastr.success('Verification code sent to your email.');
-      } else {
-        setError(response.data.message);
-      }
-    } catch (err) {
-      setError('An error occurred while sending the verification code.');
-    }
-  };
-
-  const handleVerifyCode = async (e) => {
+  const resetPassword = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
@@ -43,16 +22,11 @@ const ResetPassword = () => {
       return;
     }
 
-    if (code.toString() !== genCode.toString()) {
-      setError('Invalid verification code.');
-      toastr.error('Invalid verification code.');
-      return;
-    }
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/verify-code', {
+      const response = await axios.post('http://localhost:5000/api/auth/reset-password', {
         email,
-        code,
         newPassword,
+        dob,
       });
       if (response.data.success) {
         setSuccess('Password reset successfully! You can now log in.');
@@ -62,19 +36,19 @@ const ResetPassword = () => {
         setError(response.data.message);
       }
     } catch (err) {
-      setError('An error occurred while resetting the password.');
+        toastr.error("Invalid email or date of birth")
+      setError("Invalid email or date of birth");
     }
   };
 
   return (
     <div className="reset-password-container">
-      <h2>{step === 1 ? 'Send Verification Code' : 'Reset Password'}</h2>
+      <h2>Reset Password</h2>
       {error && <p className="error">{error}</p>}
       {success && <p className="success">{success}</p>}
-      
-      {step === 1 ? (
-        <form onSubmit={handleSendCode}>
-          <div className="form-group">
+
+        <form onSubmit={resetPassword}>
+            <div className="form-group">
             <label>Email</label>
             <input
               type="email"
@@ -83,18 +57,15 @@ const ResetPassword = () => {
               required
             />
           </div>
-          <button type="submit" className="submit-btn">Send Verification Code</button>
-        </form>
-      ) : (
-        <form onSubmit={handleVerifyCode}>
           <div className="form-group">
-            <label>Verification Code</label>
+            <label>Date of birth</label>
             <input
-              type="text"
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
-              required
-            />
+            type="date" 
+            placeholder="Date of Birth"
+            value={dob}
+            onChange={(e) => setDob(e.target.value)}
+            required
+          />
           </div>
           <div className="form-group">
             <label>New Password</label>
@@ -116,7 +87,7 @@ const ResetPassword = () => {
           </div>
           <button type="submit" className="submit-btn">Reset Password</button>
         </form>
-      )}
+
     </div>
   );
 };

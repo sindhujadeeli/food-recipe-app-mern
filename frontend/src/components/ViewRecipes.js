@@ -11,7 +11,7 @@ const ViewRecipes = () => {
 
   const fetchRecipes = async () => {
     const token = localStorage.getItem('token');
-    const response = await axios.get('http://localhost:5000/api/auth/recipe',{
+    const response = await axios.get('http://localhost:5000/api/recipe',{
         headers: {
             'Authorization': `Bearer ${token}`
           }

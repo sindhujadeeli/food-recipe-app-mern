@@ -23,6 +23,6 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // Routes
 app.use('/api/auth', authRoutes);
-//app.use('/api/recipes', recipeRoutes);
+app.use('/api/recipe', recipeRoutes);
 
 module.exports = app;
