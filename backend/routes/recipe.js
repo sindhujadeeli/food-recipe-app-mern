@@ -16,3 +16,5 @@ router.get('/', verifyToken, getAllRecipes);
 
 // Delete a recipe (Admin only)
 router.delete('/:id',verifyToken, deleteRecipe);
+
+module.exports = router;

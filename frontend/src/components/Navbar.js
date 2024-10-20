@@ -32,18 +32,19 @@ const Navbar = ({ token, logout, username }) => {
         {token && (
           <>
             <li>
-              <Link to="/recipes">Recipes</Link>
+              <Link to="/recipes">Recipes {isAdmin}</Link>
             </li>
             {isAdmin && (
               <li>
                 <Link to="/admins">Admins</Link>
               </li>
             )}
+            <li>
+          <Link to="/favorites">My Favourites</Link>
+        </li>
           </>
         )}
-        <li>
-          <Link to="/favourites">Favourites</Link>
-        </li>
+        
       </ul>
 
       {token ? (
@@ -52,7 +53,8 @@ const Navbar = ({ token, logout, username }) => {
           <div className="profile-dropdown">
             <Link to="/profile">Edit Profile</Link>
             <Link to="/change-password">Password Change</Link>
-            <button onClick={() => { logout(); navigate('/'); }}>Logout</button>
+            <center><button onClick={() => { logout(); navigate('/'); }}>Logout</button>
+            </center>
           </div>
         </div>
       ) : (

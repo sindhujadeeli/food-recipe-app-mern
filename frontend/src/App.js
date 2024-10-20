@@ -12,6 +12,7 @@ import { jwtDecode } from 'jwt-decode';
 import EditProfile from './components/EditProfile';
 import ChangePassword from './components/ChangePassword';
 import ResetPassword from './components/ResetPassword';
+import FavoriteRecipes from './components/FavoriteRecipes';
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [userInfo, setUserInfo] = useState({ username: '', role: '' });
@@ -64,7 +65,8 @@ function App() {
           <Route path="/admins" element={ userInfo.role !== 'admin' ? <AdminManagement /> : <ViewRecipes />} />
           <Route path="/profile" element={ <EditProfile updateUsername={updateUsername} />} />
           <Route path="/change-password" element={<ChangePassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />  // For non-admin users to change their password
+          <Route path="/reset-password" element={<ResetPassword />} />  
+          <Route path="/favorites" element={<FavoriteRecipes />} />
         </Routes>
       </div>
     </Router>

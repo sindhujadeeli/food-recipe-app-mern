@@ -137,4 +137,28 @@
     background-color: #c0392b;
   }
   
+  #submit-button {
+    padding: 10px 20px !important;
+    background-color: #007bff !important;
+    color: white;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer;
+  }
   
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  #cancel-button {
+    padding: 10px 20px !important;
+    background-color: #6c757d !important;
+    color: white !;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+  }
+  
+  .cancel-button:hover {
+    background-color: #5a6268;
+  }

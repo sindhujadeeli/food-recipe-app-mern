@@ -49,8 +49,9 @@ const Register = () => {
       
     } catch (error) {
       if (error.response && error.response.status === 409) {
-        toastr.error('Email already exists. Please use a different email.'); 
-        setErrorMessage('Email already exists. Please use a different email.');
+        console.log(error.response);
+        toastr.error(error.response.data.message); 
+        setErrorMessage(error.response.data.message);
       } else {
         toastr.error('Registration failed. Please try again.');
         setErrorMessage('Registration failed. Please try again.');

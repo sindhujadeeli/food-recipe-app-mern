@@ -106,7 +106,7 @@ const AdminManagement = () => {
 
   return (
     <div>
-      <h2>Admin Management</h2>
+      <center><h2>Admin Management</h2></center>
       <button onClick={() => setIsAddModalOpen(true)} className="add-admin-button">Add New Admin</button>
       
       <ul className="admin-list">
@@ -133,9 +133,10 @@ const AdminManagement = () => {
             onChange={handleInputChange} 
             required 
           />
-          <button type="submit">Add Admin</button>
+          <button type="submit" id='submit-button'>Add Admin</button>
+          <button id='cancel-button' onClick={closeAddModal}>Close</button>
+
         </form>
-        <button onClick={closeAddModal}>Close</button>
       </Modal>
 
       {/* Confirmation Modal for Deletion */}

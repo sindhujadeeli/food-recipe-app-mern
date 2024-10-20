@@ -17,7 +17,11 @@ exports.registerUser = async (req, res) => {
 
   try {
     const existingUser = await User.findOne({ email });
+    const existingUserId = await User.findOne({ username });
     
+    if (existingUserId) {
+      return res.status(409).json({ message: 'Username already exists' });
+    }
     if (existingUser) {
       return res.status(409).json({ message: 'Email already exists' });
     }
@@ -86,6 +90,7 @@ exports.createAdmin = async (req, res) => {
     );
 
     if (!user) return res.status(404).send('User not found.');
+    
 
     res.status(200).send(user); // Return the updated user
   } catch (error) {
@@ -94,7 +99,7 @@ exports.createAdmin = async (req, res) => {
 };
 
 exports.deleteAdmin = async (req, res) => {
-  const email = req.params.id; // Get the email from the request parameters
+  const email = req.params.email; // Get the email from the request parameters
   try {
     if(email == req.user.email){
       return res.status(400).send('You cannot delete yourself.');
@@ -189,20 +194,14 @@ const transporter = nodemailer.createTransport({
 // Function to send verification code
 exports.sendVerificationCode = async (req, res) => {
   const { email } = req.body;  
+  const code = Math.floor(100000 + Math.random() * 900000).toString(); 
 
-  // Generate a random verification code
-  const code = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit code
-  
-  // Ideally, you should store the code and expiration time in the database here
-  // e.g., await User.updateOne({ email }, { verificationCode: code, codeExpiry: Date.now() + 3600000 });
-
-  // Send the email with the verification code
   try {
     await transporter.sendMail({
       from: 'vishnudeeli515@gmail.com',
       to: email.toString(),
-      subject: 'Password Reset Verification Code',
-      text: `Your verification code is: ${code}`,
+      subject: 'Food App Password Reset Verification Code',
+      text: `Your verification code for Food Recipe App is: ${code}`,
     });
     res.status(200).json({ success: true, code: code});
   } catch (error) {
@@ -214,21 +213,11 @@ exports.sendVerificationCode = async (req, res) => {
 // Function to verify code and reset password
 exports.resetPassword = async (req, res) => {
   const { email, newPassword } = req.body;
-
-  // Retrieve the user and the stored verification code from the database
   const user = await User.findOne({ email });
   if (!user) {
     return res.status(400).json({ success: false, message: 'User not found' });
   }
-
-  // Here you would also check the verification code and expiration
-  // For example:
-  // if (user.verificationCode !== code || user.codeExpiry < Date.now()) {
-  //   return res.status(400).json({ success: false, message: 'Invalid or expired verification code' });
-  // }
-
-  // If verification is successful, hash the new password and update it
-  user.password = newPassword; // Remember to hash this password before saving
+  user.password = newPassword; 
   await user.save();
 
   res.json({ success: true });

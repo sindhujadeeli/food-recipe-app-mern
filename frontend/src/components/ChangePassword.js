@@ -43,13 +43,10 @@ const ResetPassword = () => {
         },
       });
 
-      if (response.data.success) {
-        setSuccess('Password has been updated successfully');
-        toastr.success('Password has been updated successfully');
-        navigate('/'); // Redirect to profile page or wherever needed
-      } else {
-        setError(response.data.message);
-      }
+        setSuccess('Password changed successfully');
+        toastr.success('Password changed successfully');
+        navigate('/'); 
+    
     } catch (err) {
       setError('Please check the current password once');
     }

@@ -19,7 +19,7 @@ exports.createRecipe = async (req, res) => {
             description,
             ingredients,
             instructions,
-            createdBy: req.user.id,  // Link to the logged-in user
+            createdBy: req.user.email,  // Link to the logged-in user
             image: {
                 data: imageFile.data,
                 contentType: imageFile.mimetype
@@ -105,5 +105,45 @@ exports.deleteRecipe = async (req, res) => {
         res.status(204).send();
     } catch (err) {
         res.status(500).json({ error: 'Failed to delete recipe' });
+    }
+};
+
+exports.toggleFavourite = async (req, res) => {
+    const { id } = req.params;
+    try {
+        // Find the recipe by ID
+        const recipe = await Recipe.findById(id);
+        if (!recipe) {
+            return res.status(404).json({ error: 'Recipe not found' });
+        }
+        // Toggle the favourite status
+        recipe.isFavorite = !recipe.isFavorite;
+        await recipe.save();
+        res.status(200).json(recipe);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to toggle favourite status' });
+    }
+};
+
+exports.getFavoriteRecipes = async (req, res) => {
+    try {
+        const recipes = await Recipe.find({ isFavorite: true });
+        // Convert binary image data to Base64 for each recipe
+        const recipesWithBase64Image = recipes.map((recipe) => {
+            if (recipe.image && recipe.image.data) {
+                // Convert binary data to Base64 string
+                const base64Image = recipe.image.data.toString('base64');
+                return {
+                    ...recipe._doc,  // Spread the rest of the recipe document
+                    image: `data:${recipe.image.contentType};base64,${base64Image}` // Construct the image URL
+                };
+            }
+            return recipe;
+        });
+        res.json(recipesWithBase64Image);
+    } catch (err) {
+        res.status(500).json({ error: 'Failed to fetch recipes' });
+        console.error(err);
     }
 };

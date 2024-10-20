@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// Define the schema for a recipe
 const recipeSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -12,7 +11,7 @@ const recipeSchema = new mongoose.Schema({
     required: true,
   },
   ingredients: {
-    type: [String],  // Array of strings for ingredients
+    type: [String],  
     required: true,
   },
   instructions: {
@@ -22,10 +21,13 @@ const recipeSchema = new mongoose.Schema({
   image: {
     data: Buffer,
     contentType: String,
-},
+  },
+  isFavorite: {
+    type: Boolean,
+    default: false,
+  },
   createdBy: {
-    type: mongoose.Schema.Types.ObjectId,  // Reference to user who created the recipe
-    ref: 'User',
+    type: String,
     required: true,
   },
   createdAt: {

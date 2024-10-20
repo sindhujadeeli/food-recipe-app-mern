@@ -56,7 +56,7 @@ const ResetPassword = () => {
       });
       if (response.data.success) {
         setSuccess('Password reset successfully! You can now log in.');
-        toastr.success('Password reset successfully! You can now log in.');
+        toastr.success('Password reset successfully! Now you can log in.');
         navigate('/login'); // Redirect to login page
       } else {
         setError(response.data.message);
