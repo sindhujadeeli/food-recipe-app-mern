@@ -59,8 +59,9 @@ const RecipeList = ({ isAdmin }) => {
   }
 
   return (
-   <div>
+   <div className='recipe-crud-container'>
      <h2>Favorite Recipes</h2>
+
     <div className="recipe-grid">
         {recipes.map((recipe) => (
           <div key={recipe._id} className="recipe-card">

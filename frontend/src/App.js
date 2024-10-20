@@ -13,6 +13,7 @@ import EditProfile from './components/EditProfile';
 import ChangePassword from './components/ChangePassword';
 import ResetPassword from './components/ResetPassword';
 import FavoriteRecipes from './components/FavoriteRecipes';
+import Footer from './components/Footer';
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [userInfo, setUserInfo] = useState({ username: '', role: '' });
@@ -68,6 +69,7 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />} />  
           <Route path="/favorites" element={<FavoriteRecipes />} />
         </Routes>
+        <Footer></Footer>
       </div>
     </Router>
   );

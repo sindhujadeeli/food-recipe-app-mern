@@ -1,0 +1,48 @@
+/* Footer.css */
+
+.footer {
+    background-color: #333; /* Dark background */
+    color: #fff; /* White text color */
+    padding: 1px 0; /* Padding for top and bottom */
+    text-align: center; /* Center text */
+  }
+  
+  .footer-content {
+    display: flex; /* Flexbox for layout */
+    justify-content: space-around; /* Space out the sections */
+    max-width: 1200px; /* Max width for the footer content */
+    margin: 0 auto; /* Center the footer content */
+    padding: 0px; /* Padding for footer content */
+  }
+  
+  .footer-links, .footer-social {
+    width: 45%; /* Each section takes up about half the width */
+  }
+  
+  .footer-links h4, .footer-social h4 {
+    margin-bottom: 10px; /* Space below headings */
+  }
+  
+  .footer-links ul, .footer-social ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+  }
+  
+  .footer-links li, .footer-social li {
+    margin-bottom: 8px; /* Space between items */
+  }
+  
+  .footer-links a, .footer-social a {
+    color: #fff; /* White color for links */
+    text-decoration: none; /* Remove underline from links */
+  }
+  
+  .footer-links a:hover, .footer-social a:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+  
+  .footer-bottom {
+    margin-top: 20px; /* Space above copyright text */
+    font-size: 0.9rem; /* Smaller font size */
+  }
+  

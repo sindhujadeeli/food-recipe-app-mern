@@ -60,11 +60,11 @@ const Navbar = ({ token, logout, username }) => {
       ) : (
         <ul>
           <li>
-            <Link to="/login">Login</Link>
+            <Link to="/login">Login/Signup</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/register">Sign Up</Link>
-          </li>
+          </li> */}
         </ul>
       )}
     </nav>

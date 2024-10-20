@@ -1,0 +1,81 @@
+
+  .home-container {
+    max-width: 1200px; /* Maximum width for the content */
+    margin: 0 auto; /* Centering the container */
+    padding: 20px; /* Padding around the container */
+    background-image:url('https://c4.wallpaperflare.com/wallpaper/373/952/839/wooden-spoon-condiments-background-wallpaper-preview.jpg');
+    background-size: cover; /* Cover the entire container */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    border-radius: 8px; /* Optional: Rounded corners for aesthetic */
+  }
+  
+  .home {
+    background-color: rgba(255, 255, 255, 0.74); /* Semi-transparent white background for readability */
+    padding: 40px; /* Spacing inside the home section */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  }
+  
+  h1 {
+    font-size: 2.5rem; /* Larger font size for the title */
+    color: #333; /* Dark color for the title */
+    margin-bottom: 20px; /* Spacing below the title */
+  }
+  
+  .intro-text {
+    font-size: 1.2rem; /* Slightly larger font for the introductory text */
+    color: #555; /* Medium grey for the text */
+    margin-bottom: 30px; /* More spacing below the paragraph */
+  }
+  
+  .features {
+    margin: 20px 0; /* Margin around the features section */
+  }
+  
+  .features h2 {
+    font-size: 2rem; /* Font size for the features section */
+    color: #28a745; /* Green color for headings */
+    margin-bottom: 10px; /* Space below the heading */
+  }
+  
+  .features ul {
+    list-style-type: none; /* Removing bullet points */
+    padding: 0; /* Removing default padding */
+  }
+  
+  .features li {
+    font-size: 1.1rem; /* Slightly larger font for list items */
+    margin-bottom: 10px; /* Space between items */
+    color: #444; /* Darker color for the list items */
+    text-align: left; /* Align text to the left for better readability */
+  }
+  
+  .call-to-action {
+    margin-top: 40px; /* Space above the call to action section */
+  }
+  
+  .call-to-action h2 {
+    font-size: 1.8rem; /* Font size for the call to action */
+    color: #007bff; /* Blue color for the call to action heading */
+    margin-bottom: 15px; /* Space below the heading */
+  }
+  
+  .login-button,
+  .signup-button {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text color */
+    padding: 12px 25px; /* Padding for the buttons */
+    border: none; /* Removing border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1rem; /* Font size for the buttons */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin: 5px; /* Margin between buttons */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+  }
+  
+  .login-button:hover,
+  .signup-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
