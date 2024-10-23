@@ -1,9 +1,10 @@
+Requirements: Node 20+, and Mongodb Compass
 # food-recipe-app
 BACKEND:
 open backend-
-change database name or connection string
+create database in mongodb = jwt-auth
 npm install
-node server.js
+npm start
 
 Test APIs:
 ---------------------------
